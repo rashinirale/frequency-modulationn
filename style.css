@@ -1,0 +1,312 @@
+@font-face {
+	font-family: "Segment16C";
+	src: url("https://cdn.josetxu.com/fonts/Segment16C-Bold-Italic.ttf")
+		format("truetype");
+}
+
+
+
+
+
+* {
+	transform-style: preserve-3d;
+	box-sizing: border-box;
+	font-family: "Segment16C", Arial, Helvetica, serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	perspective: 60vmin;
+	background: #333;
+}
+
+.content {
+	width: 50vmin;
+	height: 15vmin;
+	background: linear-gradient(90deg, #fff0 19.25vmin, #333 0 19.75vmin, #fff0 0 30.25vmin, #333 0 30.75vmin, #fff0 0 100%), linear-gradient(90deg, #333 8.75vmin, #fff0 0 calc(100% - 8.75vmin), #333 0 100%), linear-gradient(0deg, #333 0 5.75vmin, #fff0 0 9.4vmin, #333 0 100%), linear-gradient(90deg, #fff0 0 1vmin, #0004 0 calc(100% - 1vmin), #fff0 0 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 0vmin;
+	transform: rotateX(-10deg) rotateY(0deg) scale3d(1.5, 1.5, 1.5);
+}
+
+.content:before {
+	content: "";
+	position: absolute;
+	width: calc(100% - 2vmin);
+	height: calc(100% - 2vmin);
+	background: #00000040;
+	transform: translateZ(-1px);
+	filter: blur(0.5vmin);
+}
+
+.cuboid {
+	--height: 3;
+	--width: 10;
+	--depth: 10;
+	--hue: 220;
+	--sat: 20%;
+	height: calc(var(--height) * 1vmin);
+	width: calc(var(--width) * 1vmin);
+	position: absolute;
+	transition: all 0.1s ease 0s;
+	cursor: pointer;
+	margin-left: -22vmin;
+	background: hsl(var(--hue), var(--sat), 60%);
+}
+
+.cuboid .side {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 100%;
+	width: 100%;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2vmin;
+	text-shadow: 1px 0px 1px #fff4, 0px 0px 1px #000c;
+	color: #5a6c91;
+}
+
+
+.cuboid .side:nth-of-type(1) {
+	transform: translate3d(-50%, -50%, calc(var(--depth) * 0.5vmin));
+	background: hsl(var(--hue), var(--sat), 60%);
+}
+.cuboid .side:nth-of-type(2) {
+	transform: translate3d(-50%, -50%, calc(var(--depth) * -0.5vmin)) rotateY(180deg);
+	background: hsl(var(--hue), var(--sat), 25%);
+}
+.cuboid .side:nth-of-type(3) {
+	width: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateY(90deg)	translate3d(0, 0, calc(var(--width) * 0.5vmin));
+	background: hsl(var(--hue), var(--sat), 45%);
+}
+.cuboid .side:nth-of-type(4) {
+	width: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateY(-90deg) translate3d(0, 0, calc(var(--width) * 0.5vmin));
+	background: hsl(var(--hue), var(--sat), 40%);
+}
+.cuboid .side:nth-of-type(5) {
+	height: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateX(90deg) translate3d(0, 0, calc(var(--height) * 0.5vmin));
+	background: hsl(var(--hue), var(--sat), 65%);
+}
+.cuboid .side:nth-of-type(6) {
+	height: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateX(-90deg) translate3d(0, 0, calc(var(--height) * 0.5vmin));
+	background: hsl(var(--hue), var(--sat), 20%);
+}
+
+
+
+
+
+
+
+.cuboid:nth-child(2) {
+	margin-left: 0;
+}
+.cuboid:nth-child(3) {
+	margin-left: 22vmin;
+}
+
+
+.cuboid:hover{
+	transform: translateZ(-1vmin);
+}
+
+
+#am:checked ~ .content label[for=am],
+#fm:checked ~ .content label[for=fm],
+#aux:checked ~ .content label[for=aux] {
+	transform: translateZ(-3vmin);
+	transition: all 0.2s cubic-bezier(0, 0.24, 0.46, 2.31) 0s;
+	--sat: 80%;
+}
+
+
+
+
+
+
+
+.cuboid .side:nth-of-type(1):before, .cuboid .side:nth-of-type(1):after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: translateZ(-1px);
+	background: hsl(var(--hue), var(--sat), 60%);
+}
+
+.cuboid .side:nth-of-type(1):after {
+	transform: rotateX(-190deg);
+	background: #0004;
+	transform-origin: center bottom;
+	filter: blur(10px);
+	height: 75%;
+	top: 25%;
+}
+
+
+
+#am:checked ~ .content label[for="am"],
+#fm:checked ~ .content label[for="fm"],
+#aux:checked ~ .content label[for="aux"] {
+	cursor: default;
+}
+
+
+
+#am:checked ~ .content label[for=am] .side,
+#fm:checked ~ .content label[for=fm] .side,
+#aux:checked ~ .content label[for=aux] .side {
+	color: #ffffff;
+	text-shadow: 1px 0px 1px #fff4, 0px 0px 1px #000c, 0px 0px 1px #ffffff, 0px 0px 5px #ffffff, 0px 0px 10px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff;
+}
+
+
+
+#am:checked ~ .content label[for=am] .side:nth-of-type(1):after,
+#fm:checked ~ .content label[for=fm] .side:nth-of-type(1):after,
+#aux:checked ~ .content label[for=aux] .side:nth-of-type(1):after {
+	background: hsl(var(--hue), var(--sat), 60%);
+	filter: blur(15px);
+	transform: translate3d(0, 0, -1px);
+	box-shadow: 0 0 2vmin 1vmin hsl(var(--hue), var(--sat), 60%);
+	height: 100%;
+	top: 0;
+}
+
+
+input[type=radio] { display: none; }
+
+
+.info {
+	position: absolute;
+	width: 50vmin;
+	height: 15vmin;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.info:after {
+	content: "";
+	position: absolute;
+	width: calc(100% - 18vmin);
+	height: 5vmin;
+	color: #8ab2ff;
+	background: #222;
+	text-shadow: 0 0 1px #000, 0 0 1px #4b81eb, 0 0 2px #4b81eb, 0 0 3px #4b81eb, 0 0 5px #4b81eb, 0 0 10px #4b81eb;
+	transform: translateZ(10px) rotateX(10deg) scale(0.965);
+	text-align: center;
+	font-size: 2.5vmin;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: -0.75vmin;
+	border-radius: 2px;
+	box-shadow: 0 0 1vmin 0 #000 inset, 0 0 5vmin -0.5vmin #4b81eb80 inset;
+}
+
+.signal {
+	position: absolute;
+	width: 32vmin;
+	height: 5vmin;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 12vmin;
+	box-shadow: 0 0 1vmin 0 #000 inset, 0 0 5vmin -0.5vmin #4b81eb80 inset;
+	background: #222;
+	overflow: hidden;
+	transform: rotateX(10deg) translateZ(4px);
+	border-radius: 2px;
+}
+
+.signal:before, .signal:after {
+	content: "";
+	position: absolute;
+	width: 500%;
+	height: 50%;
+	top: 0;
+	--wave: #fff0 1.5vmin, #7aa1ec calc(1.5vmin + 1px) calc(1.5vmin + 2px), #fff0 calc(1.5vmin + 3px) 100%;
+	background: radial-gradient(circle at 50% 100%, var(--wave)), radial-gradient(circle at calc(50% + 6.65vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% + 13.3vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% + 19.95vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% - 6.65vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% - 13.3vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% + 26.55vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% + 33.2vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% + 39.85vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% + 46.5vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% - 19.95vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% - 26.6vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% - 33.25vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% - 39.9vmin) 100%, var(--wave)), radial-gradient(circle at calc(50% - 46.5vmin) 100%, var(--wave));
+	animation: waves 2s linear 0s infinite;
+	filter: drop-shadow(0px 0px 1px #7aa1ec) drop-shadow(0px 0px 5px #7aa1ec);
+}
+
+@keyframes waves {
+	0% { margin-right: 0vmin; }
+	100% { margin-right: 13.5vmin; }
+}
+
+
+.signal:after {
+	transform: rotateX(180deg) translateZ(0px);
+	transform-origin: center bottom;
+	margin-left: 6.6vmin;
+}
+
+.signal span {
+	position: absolute;
+	background: linear-gradient(-90deg, #0008 0.025vmin, #fff0 0.5vmin 100%);
+	width: calc(100% + 1px);
+	height: 100%;
+	left: 0;
+	z-index: 1;
+	box-shadow: 0 0 1vmin 0 #000 inset, 0 0 5vmin -0.5vmin #4b81eb80 inset;
+}
+
+
+
+
+#fm:checked ~ .content .signal:before {
+	transform: scaleY(1.5) scaleX(0.5);
+}
+#fm:checked ~ .content .signal:after {
+	transform: rotateX(180deg) scaleY(1.125) scaleX(0.5);
+	margin-left: 3.3vmin !important;
+}
+
+#aux:checked ~ .content .signal:before {
+	transform: scaleY(1.1) scaleX(2);
+	animation: waves-aux 5s linear 0s infinite;
+}
+#aux:checked ~ .content .signal:after {
+	transform: rotateX(180deg) scaleY(1) scaleX(2);
+	margin-left: 13.3vmin !important;
+	animation: waves-aux 5s linear 0s infinite;
+}
+
+@keyframes waves-aux {
+	0% { margin-right: 0vmin; }
+	100% { margin-right: 26.7vmin; }
+}
+
+
+
+#am:checked ~ .content .info:after {
+	content: "AMPLITUDE MODULATION";
+}
+
+#fm:checked ~ .content .info:after {
+	content: "FREQUENCY MODULATION";
+}
+
+#aux:checked ~ .content .info:after {
+	content: "EXT. \00a0 AUXILIARY INPUT";
+}
